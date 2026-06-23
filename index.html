@@ -1,0 +1,143 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="x-UA-compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width,initial-scal=1.0">
+   <title>calculator</title>
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+         width: 100%;
+         height: 100vh;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         background-color: rgb(243, 241, 238);
+      }
+
+      .calculator {
+         padding: 20px;
+         border-radius: 30px;
+         box-shadow: 20px 3px 15px rgba(0, 9, 4, 0);
+         background-color: rgb(204, 190, 218);
+      }
+
+      input {
+         width: 250px;
+         height: 10vh;
+         text-align: right;
+         padding: 24px;
+         margin: 10px;
+         font-size: 60px;
+         cursor: pointer;
+         background-color: rgba(1, 77, 1, 0.204);
+         border-radius: 0px;
+         border: 2px solid black;
+      }
+
+      input::placeholder {
+         color: black;
+      }
+
+      button {
+         width: 43px;
+         height: 43px;
+         border-radius: 20%;
+         border: none;
+         margin: 10px;
+         color: rgb(255, 255, 255);
+         font-size: 20px;
+         box-shadow: 0px 3px 15px rgb(0, 0, 0);
+         cursor: pointer;
+         background-color: #282626;
+      }
+
+      .equal {
+         background-color: rgb(0, 255, 55);
+      }
+
+      .operator {
+         color: rgb(0, 90, 128);
+      }
+
+      .calculator h3 {
+         text-align: center;
+      }
+
+      button:hover {
+         background-color: rgb(196, 22, 22);
+      }
+   </style>
+</head>
+
+<body>
+   <div class="calculator">
+      <h3>casio</h3>
+      <input type="text" placeholder="0" id="inputBox">
+      <div>
+         <button class="operator">AC</button>
+         <button class="operator">DEL</button>
+         <button class="operator">%</button>
+         <button class="operator">/</button>
+      </div>
+      <div>
+         <button>7</button>
+         <button>8</button>
+         <button>9</button>
+         <button class="operator">*</button>
+      </div>
+      <div>
+         <button>4</button>
+         <button>5</button>
+         <button>6</button>
+         <button class="operator">-</button>
+      </div>
+      <div>
+         <button>3</button>
+         <button>2</button>
+         <button>1</button>
+         <button class="operator">+</button>
+      </div>
+      <div>
+         <button>00</button>
+         <button>0</button>
+         <button>.</button>
+         <button class="equal">=</button>
+      </div>
+   </div>
+   <script>
+      let input = document.getElementById('inputBox');
+      let buttons = document.querySelectorAll('button');
+      let string = "";
+      let array = Array.from(buttons);
+      array.forEach(button => {
+         button.addEventListener('click', (e) => {
+            if (e.target.innerHTML == '=') {
+               string = eval(string);
+               input.value = string;
+            }
+            else if (e.target.innerHTML == 'AC') {
+               string = "";
+               input.value = string;
+            }
+            else if (e.target.innerHTML == 'DEL') {
+               string = string.substring(0, string.length - 1);
+               input.value = string;
+            }
+            else {
+               string += e.target.innerHTML;
+               input.value = string;
+            }
+         })
+      })
+   </script>
+</body>
+
+</html>
